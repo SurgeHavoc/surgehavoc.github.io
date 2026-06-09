@@ -3,37 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio - Contact</title>
+    <title>Antonio Helicio - Contact</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Navigation -->
     <header>
-        <nav>
+        <nav aria-label="Main navigation">
            <ul class="nav-links">
                <li><a href="index.html">Home</a></li>
                <li><a href="about.html">About Me</a></li>
                <li><a href="projects.html">Projects</a></li>
-               <li><a href="contact.html">Contact</a></li>
+               <li><a href="contact.html" class="active">Contact</a></li>
            </ul>
         </nav>
     </header>
 
-    <!-- Contact Section -->
-    <section class="contact">
-        <h2>Contact Me</h2>
-        <p>Feel free to reach out to me on Discord.</p>
-        <ul class="contact-list">
-            <li>Discord: juicysoda</li>
-            <li>GitHub: <a href="https://github.com/SurgeHavoc" target="_blank">GitHub link</a></li>
-        <ul>
-    </section>
+    <main>
+        <section class="contact-hero">
+            <p class="eyebrow">Contact</p>
+            <h1>Let’s build something cool.</h1>
+            <p>Reach out for gameplay programming, UI systems, technical art, lighting, shader experiments, or portfolio/project conversations.</p>
+        </section>
 
-    <!-- Footer -->
+        <section class="contact-grid contact-grid-expanded" aria-label="Contact options">
+            <article class="contact-card primary-contact">
+                <img class="contact-icon-img" src="images/icons/email.svg" alt="Email icon">
+                <div>
+                    <p class="eyebrow">Email</p>
+                    <h2>Direct Contact</h2>
+                    <p>Best for professional messages, opportunities, and longer project details.</p>
+                    <a class="btn contact-btn" href="mailto:Antonio.Helicio.Rodriguez@gmail.com">Email Me</a>
+                </div>
+            </article>
+
+            <article class="contact-card">
+                <img class="contact-icon-img" src="images/icons/linkedin.svg" alt="LinkedIn icon">
+                <div>
+                    <p class="eyebrow">Professional</p>
+                    <h2>LinkedIn</h2>
+                    <p>Connect with me professionally.</p>
+                    <a class="btn contact-btn" href="https://www.linkedin.com/in/antonio-h-265aa7186" target="_blank" rel="noopener noreferrer">Open LinkedIn</a>
+                </div>
+            </article>
+
+            <article class="contact-card">
+                <img class="contact-icon-img" src="images/icons/github.svg" alt="GitHub icon">
+                <div>
+                    <p class="eyebrow">Code + Repos</p>
+                    <h2>GitHub</h2>
+                    <p>Browse my repositories.</p>
+                    <a class="btn contact-btn" href="https://github.com/SurgeHavoc" target="_blank" rel="noopener noreferrer">Open GitHub</a>
+                </div>
+            </article>
+
+            <article class="contact-card">
+                <img class="contact-icon-img" src="images/icons/discord.svg" alt="Discord icon">
+                <div>
+                    <p class="eyebrow">Quick Reach</p>
+                    <h2>Discord</h2>
+                    <p>Best for quick messages, project questions, or general conversation.</p>
+                    <p class="contact-handle">juicysoda</p>
+                </div>
+            </article>
+        </section>
+
+    </main>
+
     <footer>
-        <p>&copy; 2024</p>
+        <p>&copy; 2026</p>
     </footer>
-
-    <script src="js/scripts.js"></script>
 </body>
 </html>

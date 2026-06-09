@@ -3,42 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio - About Me</title>
+    <title>Antonio Helicio - About Me</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Navigation -->
     <header>
-        <nav>
+        <nav aria-label="Main navigation">
            <ul class="nav-links">
                <li><a href="index.html">Home</a></li>
-               <li><a href="about.html">About Me</a></li>
+               <li><a href="about.html" class="active">About Me</a></li>
                <li><a href="projects.html">Projects</a></li>
                <li><a href="contact.html">Contact</a></li>
            </ul>
         </nav>
     </header>
 
+    <main>
+        <section class="profile-hero">
+            <div class="profile-hero-text">
+                <p class="eyebrow">About Me</p>
+                <h2>C++ programmer with a technical art edge.</h2>
+                <p>I build gameplay systems, UI, shaders, and visual polish with an eye for how features feel in motion. I like working where code, design, and art overlap.</p>
+                <div class="hero-actions">
+                    <a class="btn" href="projects.html">View My Projects</a>
+                    <a class="btn btn-secondary" href="contact.html">Get In Touch</a>
+                </div>
+            </div>
+            <aside class="profile-snapshot" aria-label="Quick snapshot">
+                <p class="eyebrow">Snapshot</p>
+                <div class="snapshot-grid">
+                    <div>
+                        <span>Focus</span>
+                        <strong>C++ gameplay systems + tech art</strong>
+                    </div>
+                    <div>
+                        <span>Education</span>
+                        <strong>UCF FIEA M.S. Interactive Entertainment 2026<br>UCF B.A. Digital Media - Game Design 2025</strong>
+                    </div>
+                    <div>
+                        <span>Team Experience</span>
+                        <strong>Lead Programmer, Lighting Artist, UI Lead</strong>
+                    </div>
+                    <div>
+                        <span>Languages</span>
+                        <strong>C++, C, Unity C#, Python</strong>
+                    </div>
+                </div>
+            </aside>
+        </section>
 
-    <!-- About Section -->
-    <section class="about">
-        <h2>About Me</h2>
-        <p>Hi! I'm Antonio, a Gameplay Programmer and Technical Artist. I like to program video games and have been delving into the artsy side of games.</p>
+        <section class="about-panel-grid" aria-label="About sections">
+            <article class="info-panel feature-panel">
+                <p class="eyebrow">What I Do</p>
+                <h2>I love to build, create, and solve problems.</h2>
+                <p>I’m interested in seamless UI, cool shaders, responsive player systems, and the technical glue that helps multidisciplinary teams move faster.</p>
+            </article>
 
-        <h3>Skills</h3>
-        <ul class="skills-list">
-            <li>Gameplay Programming</li>
-            <li>Digital Sculpting</li>
-            <li>Languages: C++, C#, C, Java, and Python (Machine Learning)
-            <li<Tools: Unity, Unreal Engine, ZBrush, Autodesk Maya, EmberGen</li>
-        </ul>
-    </section>
+            <article class="info-panel">
+                <p class="eyebrow">Programming</p>
+                <h2>Systems I like building</h2>
+                <ul class="clean-list">
+                    <li>Gameplay mechanics, player abilities, and interaction systems</li>
+                    <li>UI systems that connect cleanly with gameplay state</li>
+                    <li>Enemy AI, behavior trees, perception, and combat support</li>
+                    <li>Data-driven levels, save backends, and debugging-heavy engine work</li>
+                </ul>
+            </article>
 
+            <article class="info-panel">
+                <p class="eyebrow">Technical Art</p>
+                <h2>Visual areas I enjoy</h2>
+                <ul class="clean-list">
+                    <li>Lighting passes that support mood, readability, and art direction</li>
+                    <li>HLSL shader experiments and real-time rendering foundations</li>
+                    <li>VFX, sculpting, and asset presentation for portfolio-ready scenes</li>
+                    <li>Cross-discipline communication between programmers, designers, and artists</li>
+                </ul>
+            </article>
+        </section>
+
+        <section class="resume-highlight-section" aria-label="Resume highlights">
+            <div class="section-heading">
+                <p class="eyebrow">Resume Highlights</p>
+                <h2>Recent project strengths</h2>
+            </div>
+            <div class="highlight-grid">
+                <article class="highlight-card">
+                    <h3>Revenant: Through the Veil</h3>
+                    <p>Lead programmer and lighting artist on a 12-person team. Built player ability switching, enemy AI support, and lighting polish for an award-winning undergraduate showcase project.</p>
+                </article>
+                <article class="highlight-card">
+                    <h3>Everent</h3>
+                    <p>Programmer on a larger team developing traversal systems including wind tunnels, rail grinding, and save-file progression for a sky-surfing game.</p>
+                </article>
+                <article class="highlight-card">
+                    <h3>UI + Systems Work</h3>
+                    <p>Built custom UI and gameplay interactions across C++, C, and Unity projects, including grid-based tower/plant interactions, mobile touch gestures, and HUD systems.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="toolkit-section">
+            <div class="section-heading">
+                <p class="eyebrow">Toolkit</p>
+                <h2>Software, languages, and creative tools</h2>
+                <p class="section-intro">A quick visual map of the stack I use across gameplay programming, engine work, UI, lighting, shaders, debugging, and team development.</p>
+            </div>
+
+            <div class="toolkit-grid" aria-label="Software and tools">
+                <article class="toolkit-card">
+                    <div class="toolkit-icon-row" aria-hidden="true">
+                        <img src="images/icons/unreal.svg" alt="">
+                        <img src="images/icons/unity.svg" alt="">
+                        <img src="images/icons/gameplay.svg" alt="">
+                    </div>
+                    <p class="eyebrow">Game Development</p>
+                    <h3>Engines + gameplay systems</h3>
+                    <p>Implementing player-facing mechanics, prototyping features, and building systems in Unreal and Unity.</p>
+                    <div class="mini-chip-row">
+                        <span>Unreal Engine</span>
+                        <span>Unity</span>
+                        <span>Gameplay Programming</span>
+                    </div>
+                </article>
+
+                <article class="toolkit-card">
+                    <div class="toolkit-icon-row" aria-hidden="true">
+                        <img src="images/icons/cpp.svg" alt="">
+                        <img src="images/icons/c.svg" alt="">
+                        <img src="images/icons/csharp.svg" alt="">
+                        <img src="images/icons/python.svg" alt="">
+                    </div>
+                    <p class="eyebrow">Programming</p>
+                    <h3>Languages I work with</h3>
+                    <p>Comfortable moving between C++ systems, C projects, Unity C#, Python tools, and engine scripting.</p>
+                    <div class="mini-chip-row">
+                        <span>C++</span>
+                        <span>C</span>
+                        <span>C#</span>
+                        <span>Python</span>
+                    </div>
+                </article>
+
+                <article class="toolkit-card">
+                    <div class="toolkit-icon-row" aria-hidden="true">
+                        <img src="images/icons/hlsl.svg" alt="">
+                        <img src="images/icons/zbrush.svg" alt="">
+                        <img src="images/icons/maya.svg" alt="">
+                    </div>
+                    <p class="eyebrow">Art + Technical Art</p>
+                    <h3>Lighting, shaders, and visuals</h3>
+                    <p>Lighting, HLSL shader practice, sculpting, asset presentation, and visual polish.</p>
+                    <div class="mini-chip-row">
+                        <span>Lighting</span>
+                        <span>HLSL</span>
+                        <span>ZBrush</span>
+                        <span>Autodesk Maya</span>
+                    </div>
+                </article>
+
+                <article class="toolkit-card">
+                    <div class="toolkit-icon-row" aria-hidden="true">
+                        <img src="images/icons/visualstudio.svg" alt="">
+                        <img src="images/icons/perforce.svg" alt="">
+                        <img src="images/icons/github.svg" alt="">
+                    </div>
+                    <p class="eyebrow">Workflow</p>
+                    <h3>Debugging + collaboration</h3>
+                    <p>Debugging C++/C# code, working with version control, organizing repositories, and communicating across disciplines.</p>
+                    <div class="mini-chip-row">
+                        <span>Visual Studio</span>
+                        <span>Perforce</span>
+                        <span>GitHub</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        <p>&copy; 2024</p>
+        <p>&copy; 2026</p>
     </footer>
-
-    <script src="js/scripts.js"></script>
 </body>
 </html>

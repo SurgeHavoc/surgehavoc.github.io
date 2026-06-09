@@ -3,118 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio - Projects</title>
+    <title>Antonio Helicio - Projects</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Navigation -->
     <header>
-        <nav>
+        <nav aria-label="Main navigation">
            <ul class="nav-links">
                <li><a href="index.html">Home</a></li>
                <li><a href="about.html">About Me</a></li>
-               <li><a href="projects.html">Projects</a></li>
+               <li><a href="projects.html" class="active">Projects</a></li>
                <li><a href="contact.html">Contact</a></li>
            </ul>
         </nav>
     </header>
 
-    <!-- Projects Section -->
-    <section class="projects">
-        <h2>My Projects</h2>
+    <main>
+        <section class="page-hero compact">
+            <p class="eyebrow">Portfolio Work</p>
+            <h1>Projects</h1>
+            <p>A mix of gameplay programming, UI, rendering experiments, technical art, lighting, and digital sculpting.</p>
+        </section>
 
-        <!-- Project 1 -->
-        <div class="project">
-            <h3>Vulkan Triangle</h3>
-            <img src="images/Project 1.png" alt="Project 1 Screenshot">
-            <p><strong>Role:</strong> Programmer</p>
-            <p><strong>Tools Used:</strong> GLFW, C++</p>
-            <p><strong>Duration:</strong> 2 weeks</p>
-            <p><strong>Description:</strong> My first triangle rendered in Vulkan!</p>
-            <a href="project1.html" class="btn">Learn More</a>
-        </div>
+        <section class="projects-section" aria-labelledby="programming-heading">
+            <div class="section-heading">
+                <p class="eyebrow">Systems + Gameplay</p>
+                <h2 id="programming-heading">Programming Projects</h2>
+            </div>
 
-        <div class="project">
-            <h3>snek_game</h3>
-            <img src="images/Project 2.png" alt="Project 2 Screenshot">
-            <p><strong>Role:</strong> Gameplay Programmer</p>
-            <p><strong>Tools Used:</strong> SDL2, C++</p>
-            <p><strong>Duration:</strong> 4 weeks</p>
-            <p><strong>Description:</strong> Control the snake, get the food, avoid the walls, and grow into a big snake in this snake game!</p>
-            <a href="project2.html" class="btn">Learn More</a>
-        </div>
+            <div class="project-grid">
+                <a class="project-card" href="projects/everent.html">
+                    <img src="images/project-placeholders/everent.svg" alt="Everent placeholder image">
+                    <div class="project-content">
+                        <h3>Everent</h3>
+                        <p><strong>Role:</strong> Programmer</p>
+                        <p><strong>Tools:</strong> Unreal Engine, C++, Blueprints</p>
+                        <p><strong>Duration:</strong> Oct. 2025 - July 2026</p>
+                        <p>A sky-surfing game focused on stylish traversal, surface riding, wind tunnels, rail grinding, and progression systems.</p>
+                        <span class="text-link">View Project Details</span>
+                    </div>
+                </a>
+                <a class="project-card" href="projects/revenant-programming.html">
+                    <img src="images/Project 8.png" alt="Revenant gameplay screenshot">
+                    <div class="project-content">
+                        <h3>Revenant: Through the Veil - Programming</h3>
+                        <p><strong>Role:</strong> Lead Programmer</p>
+                        <p><strong>Tools:</strong> Unreal Engine 5.3.2, Blueprints</p>
+                        <p><strong>Duration:</strong> Oct. 2024 - June 2025</p>
+                        <p>Gameplay systems, player ability switching, enemy AI, and programming leadership for an Egyptian souls-like game.</p>
+                        <span class="text-link">View Project Details</span>
+                    </div>
+                </a>
+                <a class="project-card" href="projects/plants-vs-zombies-clone.html">
+                    <img src="images/project-placeholders/pvz-clone.svg" alt="Plants vs. Zombies clone placeholder image">
+                    <div class="project-content">
+                        <h3>Plants vs. Zombies Clone</h3>
+                        <p><strong>Role:</strong> UI Lead</p>
+                        <p><strong>Tools:</strong> Custom Engine, C++, JSON</p>
+                        <p><strong>Duration:</strong> 3 weeks</p>
+                        <p>A C++ clone focused on UI integration, plant-selection interaction, shovel behavior, and grid-based gameplay systems.</p>
+                        <span class="text-link">View Project Details</span>
+                    </div>
+                </a>
+                <a class="project-card" href="projects/gauntlet.html">
+                    <img src="images/project-placeholders/gauntlet.svg" alt="Gauntlet placeholder image">
+                    <div class="project-content">
+                        <h3>Gauntlet</h3>
+                        <p><strong>Role:</strong> Solo Developer</p>
+                        <p><strong>Tools:</strong> C, OpenGL Wrapper</p>
+                        <p><strong>Duration:</strong> 3 weeks</p>
+                        <p>A C project with custom UI, data-driven level parsing, inventory tracking, and safe enemy spawner logic.</p>
+                        <span class="text-link">View Project Details</span>
+                    </div>
+                </a>
+                <a class="project-card" href="projects/tiny-museum-defense.html">
+                    <img src="images/project-placeholders/tiny-museum-defense.svg" alt="Tiny Museum Defense placeholder image">
+                    <div class="project-content">
+                        <h3>Tiny Museum Defense</h3>
+                        <p><strong>Role:</strong> Gameplay and UI Programmer</p>
+                        <p><strong>Tools:</strong> Unity 6, C#</p>
+                        <p><strong>Duration:</strong> 2 weeks</p>
+                        <p>A mobile tower defense project focused on clean tower UI, upgrade flow, and touch gesture interactions.</p>
+                        <span class="text-link">View Project Details</span>
+                    </div>
+                </a>
+                <a class="project-card" href="projects/hlsl-shader-development.html">
+                    <img src="images/project-placeholders/hlsl-shaders.svg" alt="HLSL shader development placeholder image">
+                    <div class="project-content">
+                        <h3>HLSL Shader Development</h3>
+                        <p><strong>Role:</strong> Shader Programmer</p>
+                        <p><strong>Tools:</strong> HLSL, NVIDIA FX Composer 2.5</p>
+                        <p><strong>Duration:</strong> 3 months</p>
+                        <p>Real-time rendering studies covering normal mapping, environment mapping, shadowing, texture sampling, and post-processing.</p>
+                        <span class="text-link">View Project Details</span>
+                    </div>
+                </a>
+                <a class="project-card" href="projects/vulkan-triangle.html">
+                    <img src="images/Project 1.png" alt="Vulkan Triangle screenshot">
+                    <div class="project-content">
+                        <h3>Vulkan Triangle</h3>
+                        <p><strong>Role:</strong> Programmer</p>
+                        <p><strong>Tools:</strong> GLFW, C++</p>
+                        <p><strong>Duration:</strong> 2 weeks</p>
+                        <p>My first triangle rendered in Vulkan, focused on graphics pipeline fundamentals.</p>
+                        <span class="text-link">View Project Details</span>
+                    </div>
+                </a>
+                <a class="project-card" href="projects/snek-game.html">
+                    <img src="images/Project 2.png" alt="snek_game screenshot">
+                    <div class="project-content">
+                        <h3>snek_game</h3>
+                        <p><strong>Role:</strong> Gameplay Programmer</p>
+                        <p><strong>Tools:</strong> SDL2, C++</p>
+                        <p><strong>Duration:</strong> 4 weeks</p>
+                        <p>Classic snake gameplay with food collection, wall avoidance, and growth mechanics.</p>
+                        <span class="text-link">View Project Details</span>
+                    </div>
+                </a>
+                <a class="project-card" href="projects/text-adventure-game.html">
+                    <img src="images/Project 3.png" alt="Text Adventure Game screenshot">
+                    <div class="project-content">
+                        <h3>Text Adventure Game</h3>
+                        <p><strong>Role:</strong> Gameplay Programmer</p>
+                        <p><strong>Tools:</strong> SDL2, C++</p>
+                        <p><strong>Duration:</strong> 3 days</p>
+                        <p>A console adventure through the Dark Forest, grassland plains, and desert dunes.</p>
+                        <span class="text-link">View Project Details</span>
+                    </div>
+                </a>
+                <a class="project-card" href="projects/mr-findie.html">
+                    <img src="images/Project 4.png" alt="The Disappearance of Mr. Findie screenshot">
+                    <div class="project-content">
+                        <h3>The Disappearance of Mr. Findie</h3>
+                        <p><strong>Role:</strong> Gameplay Programmer</p>
+                        <p><strong>Tools:</strong> Unreal Engine 5.3.2, Blueprints</p>
+                        <p><strong>Duration:</strong> 4 weeks</p>
+                        <p>A mystery game about uncovering what happened to Mr. Findie.</p>
+                        <span class="text-link">View Project Details</span>
+                    </div>
+                </a>
+                <a class="project-card" href="projects/monkey-chef.html">
+                    <img src="images/Project 7.png" alt="Monkey Chef screenshot">
+                    <div class="project-content">
+                        <h3>Monkey Chef</h3>
+                        <p><strong>Role:</strong> Gameplay Programmer</p>
+                        <p><strong>Tools:</strong> Unity 2022.3.37f1, C#</p>
+                        <p><strong>Duration:</strong> 4 weeks</p>
+                        <p>Defeat aliens and collect ingredients to save the family potluck, TV time, and Sundae Date Night.</p>
+                        <span class="text-link">View Project Details</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+        <section class="projects-section" aria-labelledby="art-heading">
+            <div class="section-heading">
+                <p class="eyebrow">Visual Work</p>
+                <h2 id="art-heading">Art Projects</h2>
+            </div>
 
-        <div class="project">
-            <h3>Text Adventure Game</h3>
-            <img src="images/Project 3.png" alt="Project 3 Screenshot">
-            <p><strong>Role:</strong> Gameplay Programmer</p>
-            <p><strong>Tools Used:</strong> SDL2, C++</p>
-            <p><strong>Duration:</strong> 3 days</p>
-            <p><strong>Description:</strong> Embark on epic journey through the mysterious Dark Forest, the spanning grassland plains, and the wavy desert dunes in this text-based console game!</p>
-            <a href="project3.html" class="btn">Learn More</a>
-        </div>
-
-        <div class="project">
-            <h3>The Disappearance of Mr. Findie</h3>
-            <img src="images/Project 4.png" alt="Project 4 Screenshot">
-            <p><strong>Role:</strong> Gameplay Programmer</p>
-            <p><strong>Tools Used:</strong> Unreal Engine 5.3.2, Blueprints</p>
-            <p><strong>Duration:</strong> 4 weeks</p>
-            <p><strong>Description:</strong> Find out what happened to Mr.Findie!</p>
-            <a href="project4.html" class="btn">Learn More</a>
-        </div>
-
-        <div class="project">
-            <h3>Dark Gambit</h3>
-            <img src="images/Project 5.png" alt="Project 5 Screenshot">
-            <p><strong>Role:</strong> Gameplay Programmer</p>
-            <p><strong>Tools Used:</strong> SDL2, C++</p>
-            <p><strong>Duration:</strong> 3 Days</p>
-            <p><strong>Description:</strong> Choose your fate in this dark card game of chance and luck.</p>
-            <a href="project5.html" class="btn">Learn More</a>
-        </div>
-
-        <div class="project">
-            <h3>AC-122 Gunship Project (Halo Vulture)</h3>
-            <img src="images/Render 1.jpg" alt="Project 6 Screenshot">
-            <p><strong>Role:</strong> Digital Sculptor</p>
-            <p><strong>Tools Used:</strong> ZBrush</p>
-            <p><strong>Duration:</strong> 4 weeks</p>
-            <p><strong>Description:</strong> Made a vulture from Halo in Digital Sculpting.</p>
-            <a href="project6.html" class="btn">Learn More</a>
-        </div>
-
-        <div class="project">
-            <h3>Monkey Chef</h3>
-            <img src="images/Project 7.png" alt="Project 7 Screenshot">
-            <p><strong>Role:</strong> Gameplay Programmer</p>
-            <p><strong>Tools Used:</strong> Unity 2022.3.37f1, C#</p>
-            <p><strong>Duration:</strong> 4 weeks</p>
-            <p><strong>Description:</strong> Save the family potluck, TV time, and Sundae Date Night by defeating the aliens and collecting ingredients!</p>
-            <a href="project7.html" class="btn">Learn More</a>
-        </div>
-
-        <div class="project">
-            <h3>Revenant: Through the Veil</h3>
-            <img src="images/Project 8.png" alt="Project 8 Screenshot">
-            <p><strong>Role:</strong> Lead Programmer</p>
-            <p><strong>Tools Used:</strong> Unreal Engine 5.3.2, Blueprints</p>
-            <p><strong>Duration:</strong> 7 months (October 2024 - April 2025)</p>
-            <p><strong>Description:</strong> An egyptian-themed souls-like game!</p>
-            <a href="project8.html" class="btn">Learn More</a>
-        </div>
-
-        <div class="project">
-            <h3>More to come in Art and Game Projects!</h3>
-        </div>
-
-    </section>
-
+            <div class="project-grid">
+                <a class="project-card" href="projects/revenant-lighting.html">
+                    <img src="images/Project 8.png" alt="Revenant lighting screenshot">
+                    <div class="project-content">
+                        <h3>Revenant: Through the Veil - Lighting</h3>
+                        <p><strong>Role:</strong> Lighting Artist</p>
+                        <p><strong>Tools:</strong> Unreal Engine 5.3.2</p>
+                        <p><strong>Duration:</strong> Oct. 2024 - June 2025</p>
+                        <p>Lighting work for Revenant, supporting the mood, readability, and atmosphere of the game world.</p>
+                        <span class="text-link">View Project Details</span>
+                    </div>
+                </a>
+                <a class="project-card" href="projects/halo-vulture.html">
+                    <img src="images/Render 1.jpg" alt="AC-122 Gunship Halo Vulture render">
+                    <div class="project-content">
+                        <h3>AC-122 Gunship Project (Halo Vulture)</h3>
+                        <p><strong>Role:</strong> Digital Sculptor</p>
+                        <p><strong>Tools:</strong> ZBrush</p>
+                        <p><strong>Duration:</strong> 4 weeks</p>
+                        <p>A digital sculpt of the Halo Vulture, focused on form, silhouette, and hard-surface detail.</p>
+                        <span class="text-link">View Project Details</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        <p>&copy; 2024</p>
+        <p>&copy; 2026</p>
     </footer>
-
-    <script src="js/scripts.js"></script>
 </body>
 </html>
