@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Antonio Rodriguez - Tiny Museum Defense</title>
+<title>Antonio Helicio - Tiny Museum Defense</title>
 <link href="../css/styles.css" rel="stylesheet">
 </head>
 <body>
@@ -30,14 +30,13 @@
 <p><strong>Duration:</strong> 2 weeks</p>
 </div>
 </div>
-<img alt="Tiny Museum Defense placeholder image" src="../images/project-placeholders/tiny-museum-defense.svg">
+<img alt="Tiny Museum Defense image" <img src="../images/TMD Pic 5.png">
 </section>
 <section class="project-detail-layout">
 <article class="detail-card wide">
 <p class="eyebrow">Overview</p>
 <h2>Project Description</h2>
-<p>On Tiny Museum Defense, I worked on gameplay and UI programming for a small mobile team project. The main goal was making tower information and upgrades readable and comfortable on touch devices.</p>
-<p class="edit-note">Add final screenshots, code captures, diagrams, or production notes here when you are ready to personalize this page further.</p>
+<p>On Tiny Museum Defense, I worked on gameplay and UI programming for a small mobile team project. The main goal was making tower information and upgrades readable and comfortable on touch devices. This game was made in two weeks for Rapid Prototype Production Round 5, where the theme was mobile game.</p>
 </article>
 <div class="detail-blocks">
 <article class="detail-card detail-module">
@@ -52,39 +51,61 @@
 </article>
 <article class="detail-card detail-module media-module">
 <p class="eyebrow">Picture Block</p>
-<h2>Screenshot / Diagram</h2>
-<img alt="Tiny Museum Defense placeholder image" class="media-slot" src="../images/project-placeholders/tiny-museum-defense.svg">
-<p class="edit-note">Swap this placeholder for an in-game screenshot, engine capture, diagram, or before/after image.</p>
+<h2>Screenshot</h2>
+<img alt="Tiny Museum Defense image" class="media-slot" <img src="../images/TMD Pic 1.png">
+<p class="edit-note">This image depicts gameplay in the early stages of the game in which the player has to stop the criminals from getting to the end to win.</p>
 </article>
 <article class="detail-card detail-module snippet-module">
 <p class="eyebrow">Snippet Block</p>
-<h2>Code Snippet</h2>
-<pre><code>// Example touch upgrade interaction
-OnTowerTapped(tower)
-    ui.ShowTowerPanel(tower.Level, tower.UpgradeCost)
+<h2>Upgrade Code Snippet</h2>
+<pre><code>
+    // Normal Upgrade State
+    int nextLevel = tower.CurrentLevel + 1;
+    int cost = tower.data.GetCost(nextLevel);
 
-OnUpgradePressed()
-    if player.CanSpend(tower.UpgradeCost):
-        tower.Upgrade()
-        ui.RefreshTowerPanel(tower)</code></pre>
+    bool canAfford = true;
+    if (CurrencyManager.Instance != null)
+        canAfford = CurrencyManager.Instance.CanAfford(cost);
+
+    Color c = canAfford ? canAffordColor : cannotAffordColor;
+
+    // World text
+    if (costTextTMP != null)
+    {
+        costTextTMP.text = cost.ToString();
+        costTextTMP.color = c;
+    }
+
+</code></pre>
 </article>
-<article class="detail-card detail-module">
-<p class="eyebrow">Description Block</p>
-<h2>What This Block Explains</h2>
-<p>Use this page for mobile UI screenshots, input diagrams, touch state examples, and snippets that explain the relationship between tower state and UI updates.</p>
-<p class="edit-note">Duplicate this block pair later when you want snippet + explanation or image + technical breakdown sections.</p>
+<article class="detail-card detail-module snippet-module">
+<p class="eyebrow">Snippet Block</p>
+<h2>Button Code Snippet</h2>
+<pre><code>
+    // Button text
+    if (upgradeButtonTextTMP != null)
+    {
+        upgradeButtonTextTMP.text = $"Upgrade to L{nextLevel}";
+        upgradeButtonTextTMP.color = c;
+    }
+
+    if (upgradeButton != null)
+    {
+        upgradeButton.gameObject.SetActive(true);
+        upgradeButton.interactable = canAfford;
+    }
+</code></pre>
 </article>
 </div>
 <article class="detail-card wide">
 <p class="eyebrow">Gallery</p>
-<h2>Gallery &amp; Process Images</h2>
+<h2>Images</h2>
 <div class="gallery-grid">
 <figure>
-<img alt="Tiny Museum Defense placeholder image" src="../images/project-placeholders/tiny-museum-defense.svg">
-<figcaption>Main project image. Add more screenshots/renders here as your portfolio grows.</figcaption>
+<img alt="Tiny Museum Defense image" src="../images/TMD Pic 2.png">
 </figure>
-<div class="placeholder-box">Add screenshot, render, or process image</div>
-<div class="placeholder-box">Add before/after image or diagram</div>
+<div class="project-media-block"><img src="../images/TMD Pic 3.png"></div>
+<div class="project-media-block"><img src="../images/TMD Pic 4.png"></div>
 </div>
 </article>
 </section>
