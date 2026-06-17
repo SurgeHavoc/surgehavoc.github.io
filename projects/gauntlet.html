@@ -57,19 +57,81 @@
 <article class="detail-card detail-module snippet-module">
 <p class="eyebrow">Snippet Block</p>
 <h2>Code Snippet</h2>
-<pre><code>// Example spawn validation flow
-TrySpawnEnemy()
-    tile = PickRandomSpawnTile()
-    if tile.IsWall or tile.HasEntity:
-        return false
-    SpawnEnemyAt(tile.position)
-    return true</code></pre>
+<pre><code>
+/// @brief Spawn an enemy into one of the 8 neighboring tiles around the spawner if there is a free tile.
+/// @param sp
+static void _spawnEnemyFromSpawner(EnemySpawner* sp)
+{
+	if (sp == NULL || _enemyCount >= MAX_ENEMIES)
+		return;
+
+	int baseTx = (int)(sp->position.x / TILE_SIZE);
+	int baseTy = (int)(sp->position.y / TILE_SIZE);
+
+	// 8 neighbors around the spawner. Nothing in the center.
+	const int offsets[8][2] = {
+		{ -1, -1 }, { 0, -1 }, { 1, -1 },
+		{ -1, 0 },			   { 1, 0 },
+		{ -1, 1 }, { 0, 1 }, { 1, 1 }
+	};
+
+	int candidateTx[8];
+	int candidateTy[8];
+	int candidateCount = 0;
+
+	// Scan for valid neighbor tiles.
+	for (int k = 0; k < 8; ++k)
+	{
+		int nx = baseTx + offsets[k][0];
+		int ny = baseTy + offsets[k][1];
+
+		if (_isSpawnerTile(nx, ny))
+			continue;
+
+		if (_isCollectibleTile(nx, ny))
+			continue;
+
+		char tile = tilemapGet(&_level, nx, ny);
+
+		if (tile != '.')
+			continue;
+
+		// Candidate spawn position.
+		float x = (nx + 0.5f) * TILE_SIZE;
+		float y = (ny + 0.5f) * TILE_SIZE;
+
+		// If spawn position is blocked, then don't spawn an enemy there.
+		if (_isSpawnBlockedAt(x, y))
+			continue;
+
+		candidateTx[candidateCount] = nx;
+		candidateTy[candidateCount] = ny;
+		candidateCount++;
+	}
+
+	// None are valid? Then don't spawn an enemy.
+	if (candidateCount == 0)
+		return;
+
+	// Pick a random candidate.
+	int choiceIndex = rand() % candidateCount;
+
+	int nx = candidateTx[choiceIndex];
+	int ny = candidateTy[choiceIndex];
+
+	Coord2D pos;
+	pos.x = (nx + 0.5f) * TILE_SIZE;
+	pos.y = (ny + 0.5f) * TILE_SIZE;
+
+	_spawnEnemyAt(pos);
+}
+</code></pre>
 </article>
 <article class="detail-card detail-module">
 <p class="eyebrow">Description Block</p>
-<h2>What This Block Explains</h2>
-<p>This page can show level text files, parsed tile diagrams, HUD screenshots, and spawner code that demonstrates defensive checks and data-driven structure.</p>
-</article>
+<h2>Enemy Spawner Logic</h2>
+<p>This function controls how enemy generators spawn new enemies. Each generator sits on the tile map, so the first step is converting its world-space position into tile coordinates. From there, the function checks the eight neighboring tiles around the generator. The system builds a list of valid spawn locations. It rejects tiles that contain another spawner, collectibles, walls, doors, or other blocked positions. Once all valid neighboring tiles are collected, the function randomly picks one and spawns the enemy in the center of that tile.
+</article></p>
 </div>
 <article class="detail-card wide">
 <p class="eyebrow">Gallery</p>
