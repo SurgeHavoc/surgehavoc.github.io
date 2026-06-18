@@ -131,7 +131,8 @@ static void _spawnEnemyFromSpawner(EnemySpawner* sp)
 <p class="eyebrow">Description Block</p>
 <h2>Enemy Spawner Logic</h2>
 <p>This function controls how enemy generators spawn new enemies. Each generator sits on the tile map, so the first step is converting its world-space position into tile coordinates. From there, the function checks the eight neighboring tiles around the generator. The system builds a list of valid spawn locations. It rejects tiles that contain another spawner, collectibles, walls, doors, or other blocked positions. Once all valid neighboring tiles are collected, the function randomly picks one and spawns the enemy in the center of that tile.
-</article></p>
+</p>
+</article>
 </div>
 <article class="detail-card wide">
 <p class="eyebrow">Gallery</p>
@@ -156,5 +157,6 @@ static void _spawnEnemyFromSpawner(EnemySpawner* sp)
 <footer>
 <p>© 2026</p>
 </footer>
+<script src="../js/lightbox.js"></script>
 </body>
 </html>

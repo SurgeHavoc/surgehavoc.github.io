@@ -988,3 +988,61 @@ code {
         min-height: auto;
     }
 }
+
+.project-gallery img,
+.gallery-grid img,
+.zoomable-image {
+  cursor: zoom-in;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: rgba(6, 12, 28, 0.88);
+  backdrop-filter: blur(10px);
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox-image {
+  max-width: min(1100px, 92vw);
+  max-height: 86vh;
+  border-radius: 1.25rem;
+  object-fit: contain;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(225, 240, 255, 0.35);
+  border-radius: 999px;
+  background: rgba(18, 32, 64, 0.72);
+  color: #edf7ff;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.lightbox-close:hover {
+  background: rgba(70, 126, 190, 0.75);
+}
+
+.zoomable-image:focus-visible {
+  outline: 3px solid rgba(217, 236, 255, 0.82);
+  outline-offset: 4px;
+}
+
+body.lightbox-open {
+  overflow: hidden;
+}
