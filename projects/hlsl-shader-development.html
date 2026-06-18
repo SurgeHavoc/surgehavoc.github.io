@@ -26,11 +26,11 @@
 <p>A set of real-time rendering experiments focused on shader fundamentals, lighting models, and graphics pipeline concepts.</p>
 <div class="project-meta">
 <p><strong>Role:</strong> Shader Programmer</p>
-<p><strong>Tools:</strong> HLSL, NVIDIA FX Composer 2.5</p>
+<p><strong>Used:</strong> HLSL, NVIDIA FX Composer 2.5</p>
 <p><strong>Duration:</strong> 3 months</p>
 </div>
 </div>
-<img alt="HLSL shader development placeholder image" src="../images/project-placeholders/hlsl-shaders.svg">
+<img alt="HLSL shader development placeholder image" src="../images/SkyBoxMaterial.png">
 </section>
 <section class="project-detail-layout">
 <article class="detail-card wide">
@@ -52,9 +52,9 @@
 </article>
 <article class="detail-card detail-module media-module">
 <p class="eyebrow">Picture Block</p>
-<h2>Screenshot / Diagram</h2>
-<img alt="HLSL shader development placeholder image" class="media-slot" src="../images/project-placeholders/hlsl-shaders.svg">
-<p class="edit-note">Swap this placeholder for an in-game screenshot, engine capture, diagram, or before/after image.</p>
+<h2>Screenshot</h2>
+<img alt="HLSL shader development placeholder image" class="media-slot" src="../images/Blinn Phong Shader.png">
+<p class="edit-note"></p>
 </article>
 <article class="detail-card detail-module snippet-module">
 <p class="eyebrow">Snippet Block</p>
@@ -65,12 +65,57 @@ float3 lightDir = normalize(lightPosition - worldPosition);
 float lighting = saturate(dot(normalWS, lightDir));
 return baseColor * lighting;</code></pre>
 </article>
-<article class="detail-card detail-module">
-<p class="eyebrow">Description Block</p>
-<h2>What This Block Explains</h2>
-<p>This page is ideal for shader screenshots, material breakdowns, before/after images, and snippets that explain how surface normals, lighting, or post effects are calculated.</p>
-<p class="edit-note">Duplicate this block pair later when you want snippet + explanation or image + technical breakdown sections.</p>
+<article class="detail-card detail-module media-module">
+<p class="eyebrow">Picture Block</p>
+<h2>Screenshot</h2>
+<img alt="HLSL shader development placeholder image" class="media-slot" src="../images/SkyBoxMaterial.png">
+<p class="edit-note"></p>
 </article>
+<article class="detail-card detail-module snippet-module">
+<p class="eyebrow">Snippet Block</p>
+<h2>Code Snippet</h2>
+<pre><code>// Example shader note
+float3 normalWS = normalize(mul(normalTS, tangentToWorld));
+float3 lightDir = normalize(lightPosition - worldPosition);
+float lighting = saturate(dot(normalWS, lightDir));
+return baseColor * lighting;</code></pre>
+</article>
+<article class="detail-card detail-module media-module">
+<p class="eyebrow">Picture Block</p>
+<h2>Blinn Phong Shader</h2>
+<img alt="HLSL shader development placeholder image" class="media-slot" src="../images/Blinn Phong Shader.png">
+<p class="edit-note"></p>
+</article>
+<article class="detail-card detail-module snippet-module">
+<p class="eyebrow">Snippet Block</p>
+<h2>Code Snippet</h2>
+<pre><code>// Example shader note
+float3 normalWS = normalize(mul(normalTS, tangentToWorld));
+float3 lightDir = normalize(lightPosition - worldPosition);
+float lighting = saturate(dot(normalWS, lightDir));
+return baseColor * lighting;</code></pre>
+</article>
+<article class="detail-card detail-module media-module">
+<p class="eyebrow">Picture Block</p>
+<h2>Multiple Lights Shader</h2>
+<img alt="HLSL shader development placeholder image" class="media-slot" src="../images/Multiple Lights Shader.png">
+<p class="edit-note"></p>
+</article>
+<article class="detail-card detail-module snippet-module">
+<p class="eyebrow">Snippet Block</p>
+<h2>Code Snippet</h2>
+<pre><code>// Example shader note
+float3 normalWS = normalize(mul(normalTS, tangentToWorld));
+float3 lightDir = normalize(lightPosition - worldPosition);
+float lighting = saturate(dot(normalWS, lightDir));
+return baseColor * lighting;</code></pre>
+</article>
+<article class="detail-card detail-module media-module">
+<p class="eyebrow">Picture Block</p>
+<h2>Fog Shader</h2>
+<img alt="HLSL shader development placeholder image" class="media-slot" src="../images/Fog Shader 1.png">
+<p class="edit-note"></p>
+</article>	
 </div>
 <article class="detail-card wide">
 <p class="eyebrow">Gallery</p>
