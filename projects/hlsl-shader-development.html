@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Antonio Rodriguez - HLSL Shader Development</title>
+<title>Antonio Helicio - HLSL Shader Development</title>
 <link href="../css/styles.css" rel="stylesheet">
 </head>
 <body>
@@ -21,112 +21,251 @@
 <section class="project-hero">
 <div class="project-hero-text">
 <a class="back-link" href="../projects.html">← Back to Projects</a>
-<p class="eyebrow">Technical Art Project</p>
+<p class="eyebrow">Graphics Programming</p>
 <h1>HLSL Shader Development</h1>
-<p>A set of real-time rendering experiments focused on shader fundamentals, lighting models, and graphics pipeline concepts.</p>
+<p>Two HLSL study projects made in NVIDIA FX Composer 2.5 to practice real-time rendering fundamentals, lighting models, texture sampling, normal mapping, fog, skyboxes, and environment reflections.</p>
 <div class="project-meta">
 <p><strong>Role:</strong> Shader Programmer</p>
-<p><strong>Used:</strong> HLSL, NVIDIA FX Composer 2.5</p>
+<p><strong>Used:</strong> HLSL, NVIDIA FX Composer 2.5, DirectX-style shader pipeline</p>
+<p><strong>Project Set:</strong> HelloShaders + GleamingTheCube</p>
 <p><strong>Duration:</strong> 3 months</p>
 </div>
+<div class="project-actions">
+<a class="text-link" href="#shader-gallery">View Gallery</a>
 </div>
-<img alt="HLSL shader development placeholder image" src="../images/SkyBoxMaterial.png">
+</div>
+<img alt="Skybox shader material preview" class="zoomable-image" src="../images/SkyBoxMaterial.png">
 </section>
 <section class="project-detail-layout">
 <article class="detail-card wide">
 <p class="eyebrow">Overview</p>
 <h2>Project Description</h2>
-<p>These personal shader projects helped me build a stronger foundation in real-time rendering and graphics programming. I explored vertex and pixel shaders while practicing core rendering concepts.</p>
-<p class="edit-note">Add final screenshots, code captures, diagrams, or production notes here when you are ready to personalize this page further.</p>
+<p>This project page now covers two personal shader projects: <strong>HelloShaders</strong>, which focuses on lighting fundamentals, and <strong>GleamingTheCube</strong>, which expands into material and scene effects. Together, they show a progression from basic color/texture output into more complete real-time rendering techniques.</p>
+<p>I used these projects to build a stronger foundation in vertex shaders, pixel shaders, constant buffers, sampler states, coordinate space transformations, texture lookups, lighting contribution functions, and shader technique setup.</p>
+<div class="shader-project-grid">
+<article>
+<h3>HelloShaders</h3>
+<p>Lighting and material fundamentals, including ambient lighting, diffuse lighting, Phong, Blinn-Phong, point lights, spotlights, multiple lights, texture mapping, and particle shader experiments.</p>
 </article>
+<article>
+<h3>GleamingTheCube</h3>
+<p>More advanced material/scene effects, including normal mapping, environment mapping, displacement mapping, fog, transparency mapping, and skybox sampling.</p>
+</article>
+</div>
+</article>
+
 <div class="detail-blocks">
+<article class="detail-card detail-module media-module">
+<p class="eyebrow">Picture Block</p>
+<h2>Blinn-Phong Lighting</h2>
+<img alt="Blinn Phong shader preview" class="media-slot" src="../images/Blinn Phong Shader.png">
+<p class="edit-note">A lighting pass focused on combining ambient, diffuse, and specular terms for a cleaner material response.</p>
+</article>
+<article class="detail-card detail-module snippet-module">
+<p class="eyebrow">Snippet Block</p>
+<h2>Half-Vector Specular</h2>
+<pre><code>float4 pixel_shader(VS_OUTPUT IN) : SV_Target
+{
+    float3 normal = normalize(IN.Normal);
+    float3 lightDirection = normalize(IN.LightDirection);
+    float3 viewDirection = normalize(IN.ViewDirection);
+    float n_dot_l = dot(lightDirection, normal);
+
+    float4 color = ColorTexture.Sample(ColorSampler, IN.TextureCoordinate);
+    float3 ambient = AmbientColor.rgb * AmbientColor.a * color.rgb;
+    float3 diffuse = (float3)0;
+    float3 specular = (float3)0;
+
+    if (n_dot_l &gt; 0)
+    {
+        diffuse = LightColor.rgb * LightColor.a * saturate(n_dot_l) * color.rgb;
+        float3 halfVector = normalize(lightDirection + viewDirection);
+        specular = SpecularColor.rgb * SpecularColor.a *
+            min(pow(saturate(dot(normal, halfVector)), SpecularPower), color.w);
+    }
+
+    return float4(ambient + diffuse + specular, 1.0f);
+}</code></pre>
+</article>
+
 <article class="detail-card detail-module">
 <p class="eyebrow">Technical Block</p>
-<h2>Technical Focus</h2>
+<h2>Multiple Lights Shader</h2>
+<p>This shader collects lighting from multiple sources into one final contribution. The directional light establishes the broad scene lighting, point lights add local intensity, and the spotlight uses angular falloff so the effect feels more controlled.</p>
 <ul class="detail-list">
-<li>Normal mapping, environment mapping, and shadowing techniques</li>
-<li>Vertex and pixel shader authoring in HLSL</li>
-<li>Lighting models, coordinate space transformations, and texture sampling</li>
-<li>Post-processing experiments and graphics pipeline fundamentals</li>
+<li>Uses a shared light contribution data structure.</li>
+<li>Loops through point lights with an unrolled loop.</li>
+<li>Uses distance attenuation and spotlight cone falloff.</li>
+<li>Keeps the pixel shader organized around reusable lighting functions.</li>
+</ul>
+</article>
+<article class="detail-card detail-module snippet-module">
+<p class="eyebrow">Snippet Block</p>
+<h2>Point + Spotlight Loop</h2>
+<pre><code>[unroll]
+for (int i = 0; i &lt; lightCount; i++)
+{
+    lightContributionData.LightDirection = get_light_data(
+        PointLights[i].Position,
+        IN.WorldPosition,
+        PointLights[i].LightRadius
+    );
+
+    lightContributionData.LightColor = PointLights[i].Color;
+    totalLightContribution += get_light_contribution(lightContributionData);
+}
+
+float spotFactor = dot(normalize(SpotLight.Direction), -directionalToLight);
+float spotAttenuation = smoothstep(cos(SpotLight.SpotAngle), 1.0f, spotFactor);
+float attenuation = saturate(1.0f - distance / SpotLight.LightRadius) * spotAttenuation;</code></pre>
+</article>
+
+<article class="detail-card detail-module media-module">
+<p class="eyebrow">Picture Block</p>
+<h2>Multiple Lights Shader</h2>
+<img alt="Multiple lights shader preview" class="media-slot" src="../images/Multiple Lights Shader.png">
+<p class="edit-note">A scene preview showing multiple light sources affecting the same material.</p>
+</article>
+<article class="detail-card detail-module snippet-module">
+<p class="eyebrow">Snippet Block</p>
+<h2>Normal Mapping</h2>
+<pre><code>float3 sampledNormal =
+    (2 * NormalMap.Sample(TrilinearSampler, IN.TextureCoordinate).xyz) - 1.0;
+
+float3x3 tbn = float3x3(IN.Tangent, IN.Binormal, IN.Normal);
+sampledNormal = mul(sampledNormal, tbn);
+
+LIGHT_CONTRIBUTION_DATA lightContributionData;
+lightContributionData.Color = ColorTexture.Sample(TrilinearSampler, IN.TextureCoordinate);
+lightContributionData.Normal = sampledNormal;
+lightContributionData.ViewDirection = normalize(IN.ViewDirection);
+lightContributionData.LightDirection = float4(IN.LightDirection, 1);
+
+float3 lightContribution = get_light_contribution(lightContributionData);</code></pre>
+</article>
+
+<article class="detail-card detail-module">
+<p class="eyebrow">Technical Block</p>
+<h2>Normal Map Workflow</h2>
+<p>The normal mapping shader samples a tangent-space normal map, remaps the sampled color from <code>[0..1]</code> into <code>[-1..1]</code>, then transforms that value through the TBN matrix so it can be used for lighting in world space.</p>
+<ul class="detail-list">
+<li>Samples a normal texture using a trilinear sampler.</li>
+<li>Builds a tangent/binormal/normal basis.</li>
+<li>Feeds the transformed normal into the same lighting contribution path.</li>
 </ul>
 </article>
 <article class="detail-card detail-module media-module">
 <p class="eyebrow">Picture Block</p>
-<h2>Screenshot</h2>
-<img alt="HLSL shader development placeholder image" class="media-slot" src="../images/Blinn Phong Shader.png">
-<p class="edit-note"></p>
+<h2>Material / Texture Preview</h2>
+<img alt="Shader material preview" class="media-slot" src="../images/Shader 1.png">
+<p class="edit-note">A material preview image for demonstrating texture and lighting experiments.</p>
+</article>
+
+<article class="detail-card detail-module snippet-module">
+<p class="eyebrow">Snippet Block</p>
+<h2>Environment Reflection</h2>
+<pre><code>float3 worldPosition = mul(IN.ObjectPosition, World).xyz;
+float3 incident = normalize(worldPosition - CameraPosition);
+float3 normal = normalize(mul(float4(IN.Normal, 0), World).xyz);
+
+// Reflection Vector for cube map: R = I - 2 * N * (I.N)
+OUT.ReflectionVector = reflect(incident, normal);
+
+float3 environment = EnvironmentMap.Sample(TrilinearSampler, IN.ReflectionVector).rgb;
+float3 reflection = get_vector_color_contribution(EnvColor, environment);
+OUT.rgb = lerp(ambient, reflection, ReflectionAmount);</code></pre>
+</article>
+<article class="detail-card detail-module">
+<p class="eyebrow">Technical Block</p>
+<h2>Environment Mapping</h2>
+<p>The environment mapping shader calculates a reflection vector from the camera-to-surface direction and the world-space normal, samples a cube map with that vector, and blends the result against ambient lighting.</p>
+<ul class="detail-list">
+<li>Uses <code>reflect()</code> for cube map lookup direction.</li>
+<li>Samples from an environment map texture.</li>
+<li>Uses a reflection amount value to control the final blend.</li>
+</ul>
+</article>
+
+<article class="detail-card detail-module media-module">
+<p class="eyebrow">Picture Block</p>
+<h2>Distance-Based Fog Shader</h2>
+<img alt="Fog shader preview" class="media-slot" src="../images/Fog Shader 1.png">
+<p class="edit-note">The fog effect uses camera-to-surface distance to fade the lit material into a controllable fog color, giving the scene more atmospheric depth.</p>
 </article>
 <article class="detail-card detail-module snippet-module">
 <p class="eyebrow">Snippet Block</p>
-<h2>Code Snippet</h2>
-<pre><code>// Example shader note
-float3 normalWS = normalize(mul(normalTS, tangentToWorld));
-float3 lightDir = normalize(lightPosition - worldPosition);
-float lighting = saturate(dot(normalWS, lightDir));
-return baseColor * lighting;</code></pre>
+<h2>Distance-Based Fog Factor</h2>
+<pre><code>float get_fog_amount(float3 viewDirection, float fogStart, float fogRange)
+{
+    return saturate((length(viewDirection) - fogStart) / fogRange);
+}
+
+float3 worldPosition = mul(IN.ObjectPosition, World).xyz;
+float3 viewDirection = CameraPosition - worldPosition;
+OUT.ViewDirection = normalize(viewDirection);
+OUT.FogAmount = get_fog_amount(viewDirection, FogStart, FogRange);
+
+// Pixel shader: push distant surfaces toward the fog color.
+float3 litSurface = ambient + light_contribution;
+OUT.rgb = lerp(litSurface, FogColor, IN.FogAmount);</code></pre>
+</article>
+
+<article class="detail-card detail-module">
+<p class="eyebrow">Technical Block</p>
+<h2>Fog Falloff Control</h2>
+<p>The shader calculates fog as a normalized distance range instead of applying a flat overlay. <code>FogStart</code> controls where the atmosphere begins, <code>FogRange</code> controls how gradually it builds, and <code>saturate()</code> clamps the final blend so nearby objects stay clear while distant objects fade smoothly.</p>
+<ul class="detail-list">
+<li>Computes fog from camera-to-surface distance in world space.</li>
+<li>Passes a fog factor from the vertex shader into the pixel shader.</li>
+<li>Blends the final lit surface color toward <code>FogColor</code>.</li>
+</ul>
+</article>
+
+<article class="detail-card detail-module">
+<p class="eyebrow">Technical Block</p>
+<h2>Techniques Practiced</h2>
+<ul class="detail-list">
+<li>Vertex-to-pixel shader data flow</li>
+<li>Ambient, diffuse, Phong, and Blinn-Phong lighting</li>
+<li>Directional, point, and spot light behavior</li>
+<li>Normal mapping with tangent-space conversion</li>
+<li>Environment mapping using cube map reflection vectors</li>
+<li>Fog, transparency, skybox, and displacement experiments</li>
+<li>Texture coordinate correction and sampler setup</li>
+</ul>
 </article>
 <article class="detail-card detail-module media-module">
 <p class="eyebrow">Picture Block</p>
-<h2>Screenshot</h2>
-<img alt="HLSL shader development placeholder image" class="media-slot" src="../images/SkyBoxMaterial.png">
-<p class="edit-note"></p>
+<h2>Skybox Material</h2>
+<img alt="Skybox shader preview" class="media-slot" src="../images/SkyBoxMaterial.png">
+<p class="edit-note">The skybox shader samples a cube texture using the object-space position as the lookup direction.</p>
 </article>
-<article class="detail-card detail-module snippet-module">
-<p class="eyebrow">Snippet Block</p>
-<h2>Code Snippet</h2>
-<pre><code>// Example shader note
-float3 normalWS = normalize(mul(normalTS, tangentToWorld));
-float3 lightDir = normalize(lightPosition - worldPosition);
-float lighting = saturate(dot(normalWS, lightDir));
-return baseColor * lighting;</code></pre>
-</article>
-<article class="detail-card detail-module media-module">
-<p class="eyebrow">Picture Block</p>
-<h2>Blinn Phong Shader</h2>
-<img alt="HLSL shader development placeholder image" class="media-slot" src="../images/Blinn Phong Shader.png">
-<p class="edit-note"></p>
-</article>
-<article class="detail-card detail-module snippet-module">
-<p class="eyebrow">Snippet Block</p>
-<h2>Code Snippet</h2>
-<pre><code>// Example shader note
-float3 normalWS = normalize(mul(normalTS, tangentToWorld));
-float3 lightDir = normalize(lightPosition - worldPosition);
-float lighting = saturate(dot(normalWS, lightDir));
-return baseColor * lighting;</code></pre>
-</article>
-<article class="detail-card detail-module media-module">
-<p class="eyebrow">Picture Block</p>
-<h2>Multiple Lights Shader</h2>
-<img alt="HLSL shader development placeholder image" class="media-slot" src="../images/Multiple Lights Shader.png">
-<p class="edit-note"></p>
-</article>
-<article class="detail-card detail-module snippet-module">
-<p class="eyebrow">Snippet Block</p>
-<h2>Code Snippet</h2>
-<pre><code>// Example shader note
-float3 normalWS = normalize(mul(normalTS, tangentToWorld));
-float3 lightDir = normalize(lightPosition - worldPosition);
-float lighting = saturate(dot(normalWS, lightDir));
-return baseColor * lighting;</code></pre>
-</article>
-<article class="detail-card detail-module media-module">
-<p class="eyebrow">Picture Block</p>
-<h2>Fog Shader</h2>
-<img alt="HLSL shader development placeholder image" class="media-slot" src="../images/Fog Shader 1.png">
-<p class="edit-note"></p>
-</article>	
 </div>
-<article class="detail-card wide">
+
+<article class="detail-card wide" id="shader-gallery">
 <p class="eyebrow">Gallery</p>
-<h2>Gallery &amp; Process Images</h2>
+<h2>Gallery &amp; Shader Previews</h2>
 <div class="gallery-grid">
 <figure>
-<img alt="HLSL shader development placeholder image" src="../images/project-placeholders/hlsl-shaders.svg">
-<figcaption>Main project image. Add more screenshots/renders here as your portfolio grows.</figcaption>
+<img alt="Skybox material shader preview" src="../images/SkyBoxMaterial.png">
+<figcaption>Skybox material preview.</figcaption>
 </figure>
-<div class="placeholder-box">Add screenshot, render, or process image</div>
-<div class="placeholder-box">Add before/after image or diagram</div>
+<figure>
+<img alt="Blinn Phong shader preview" src="../images/Blinn Phong Shader.png">
+<figcaption>Blinn-Phong lighting shader preview.</figcaption>
+</figure>
+<figure>
+<img alt="Multiple lights shader preview" src="../images/Multiple Lights Shader.png">
+<figcaption>Multiple lights shader preview.</figcaption>
+</figure>
+<figure>
+<img alt="Fog shader preview" src="../images/Fog Shader 1.png">
+<figcaption>Fog shader preview.</figcaption>
+</figure>
+<figure>
+<img alt="Shader material preview" src="../images/Shader 1.png">
+<figcaption>Material / texture shader preview.</figcaption>
+</figure>
 </div>
 </article>
 </section>
