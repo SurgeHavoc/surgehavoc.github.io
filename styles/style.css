@@ -1,0 +1,360 @@
+/* ===== SECTION 1 ===== GLOBAL STYLES AND RESETS ===== */
+:root
+{
+    /* Variables defined for easy color changes later. */
+    --primary-color: #3498db; /* Main blue accent. */
+    --secondary-color: #c0392b; /* Deep red accent. */
+    --text-dark: #2c3e50; /* Deep charcoal for readability. */
+    --background-light: #f4f7f9; /* Off-white background. */
+}
+
+*
+{
+    /* Ensures padding/margin calculations include the element's border. */
+    box-sizing: border-box;
+}
+
+body
+{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Clean tech font stack. */
+    line-height: 1.6; /* Improves readability. */
+    color: var(--text-dark);
+    background-color: var(--background-light);
+    margin: 0; /* Remove default browser margin. */
+}
+
+/* General section padding for breathing room */
+section
+{
+    padding: 80px 5%; /* Adds top/bottom spacing and side spacing to all sections. */
+}
+
+/* ===== SECTION 2 ===== NAVIGATION BAR ===== */
+
+.nav-bar
+{
+    position: sticky;
+    top: 0;
+    background-color: white;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08); /* Increased shadow for more definition. */
+    display: flex;
+    /* Gap for cleaner spacing control than margins. */
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px; /* Increase padding slightly to give breathing room.*/
+}
+
+.logo
+{
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--primary-color);
+    /* Subtle underline on hover for polish. */
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+/* Container for the links, allowing for them to be treated as one unit. */
+nav
+{
+    display: flex;
+    gap: 40px; /* A consistent gap instead of individual margins. */
+}
+
+/* Style for each link element (a) within the nav */
+nav a
+{
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    /* Ensure the links are aligned nicely and have space above them if needed. */
+}
+
+nav a:hover
+{
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+/* Section for mobile view responsiveness. */
+@media (max-width: 800px)
+{
+    /* Stack the nav items compactly when the screen is narrower than 800px. */
+    .nav-bar
+    {
+        padding: 15px 20px; /* Reduce overall padding. */
+    }
+
+    nav
+    {
+        gap: 30px; /* Reduce spacing between links on smaller screens. */
+    }
+
+    /* Possible to-do: mobile enhancement for very small screen, might need to hide some links or implement a hamburger menu. */
+}
+
+@media (max-width: 450px)
+{
+    /* Cramped phone view adjustment. */
+    .nav-bar
+    {
+        padding: 15px 15px;
+    }
+    nav a
+    {
+        font-size: 0.9em; /* Slightly smaller text to fit more links. */
+    }
+}
+
+/* ===== SECTION 3 ===== HERO SECTION ===== */
+
+.hero-section {
+    height: 80vh; /* 80% of viewport height. */
+    display: flex; /* Center everything horizontally and vertically. */
+    flex-direction: column; /* Stack children vertically. */
+    justify-content: center; /* Vertical centering. */
+    text-align: center; /* Horizontal centering. */
+}
+
+.hero-section h1 {
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+    /* Add a primary color accent potentially for later. */
+    background-image: linear-gradient(to right, var(--primary-color), var(--text-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Make the background image fill the text. */
+}
+
+.hero-section h1:after {
+    content: '';
+    display: block;
+    width: 80%;
+    height: 3px;
+    background: var(--primary-color);
+    margin: 10px auto;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.hero-section h1:hover::after {
+    width: 100%;
+    background: var(--secondary-color);
+}
+
+.hero-section p {
+    font-size: 1.3em;
+    max-width: 600px;
+    margin-bottom: 40px;
+}
+
+/* Styling for the primary call-to-action button. */
+.cta-button {
+    max-width: 350px;
+    width: 90%;
+
+    display: block;
+    margin: 30px auto 0;
+
+    padding: 12px 40px;
+    text-decoration: none;
+    color: white;
+    background-color: var(--primary-color);
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Hover effect using the secondary red accent. */
+.cta-button:hover {
+    background-color: var(--secondary-color);
+    transform:translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0 ,0, 0.1);
+}
+
+/* ===== SECTION 4 ===== PROJECT GRID ===== */
+
+.project-grid {
+    text-align: center;
+}
+
+.project-grid h2 {
+    font-size: 2em;
+    margin-bottom: 50px;
+    color: var(--text-dark);
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns. */
+    gap: 40px; /* Spacing between cards. */
+}
+
+.project-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shahow 0.3s ease;
+    text-align: left;
+}
+
+/* The card lifts and gets a stronger shadow. */
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.project-card h3 {
+    color: var(--primary-color);
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+/* Styling for buttons within cards. */
+.project-card button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.2s ease;
+}
+
+.project-card button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* ===== SECTION 5 ===== ABOUT ME ===== */
+
+.bio-section {
+    text-align: center;
+}
+
+.bio-section h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+/* Make the image and text sit side-by-side. */
+.bio-section img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 25px;
+}
+
+.bio-section p {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* ===== SECTION 6 ===== FOOTER ===== */
+
+footer {
+    background-color: #2c3e50; /* Dark text color for a stronger base. */
+    color: #aaa;
+    padding: 40px 5%;
+    text-align: center;
+}
+
+.footer-content {
+    display: block; /* Keep the copyright on its own line for desktop view. */
+    font-size: 1em;
+    margin-bottom: 20px;
+}
+
+.footer-links a {
+    color: var(--primary-color);
+    text-decoration: none;
+    padding: 20px;
+    margin: 0 15px; /* Spacing between links in this group. */
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: var(--secondary-color);
+}
+
+/* ===== GLOBAL RESPONSIVENESS ===== */
+
+/* Tablet/Mid-Sized Screens (e.g., iPads, laptops in portrait mode) */
+
+@media (max-width: 1024px) {
+    /* General spacing adjustment for tables. */
+    section {
+        padding: 60px 5%;
+    }
+
+    /* Project Grid on Tablet: Drops to 2 columns. */
+    .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+    }
+
+    /* Hero Text size reduction. */
+    .hero-section h1 {
+        font-size: 3em;
+    }
+}
+
+/* Mobile Screens (e.g., Phones) */
+@media (max-width: 600px) {
+    /* Global Section Padding Reduction for mobile. */
+    section {
+        padding: 40px 5%;
+    }
+
+    /* Reinforce the link adjustments here. */
+    .nav-bar {
+        padding: 40px 5%;
+    }
+
+    /* Project Grid on Mobile: Drops to a single column. */
+    .project-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    /* Hero Text size reduction for phones. */
+    .hero-section h1 {
+        font-size: 2.3em;
+    }
+
+    .hero-section p {
+        font-size: 1.1em;
+    }
+
+    /* Reduce visual bulk on mobile. */
+    .project-card, .bio-section img {
+        padding: 0; /* Remores padding that looks too large on small screens. */
+    }
+}
+
+/* ===== VIDEO ===== */
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.video-wrapper iframe,
+.video-wrapper video {
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.video-container video {
+    width: 100%;
+    max-width: 100%;
+}
